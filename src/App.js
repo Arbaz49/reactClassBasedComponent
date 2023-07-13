@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { withStyles } from "@material-ui/core";
+import { BrowserRouter as Router,Route,Switch } from "react-router-dom";
+import ProductPage from "./Pages/ProductPage";
+import HomePage from "./Pages/HomePage";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const styles = {
+  productListContainer: {
+    height: "97vh",
+    width: "99vw",
+  },
+  clickButton: {
+    padding: "2px 10px",
+    color: "white",
+    backgroundColor: "black",
+    cursor: "pointer",
+    fontSize: "20px",
+    borderRadius: "8px",
+  },
+};
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+    };
+  }
+
+  render() {
+    // const { classes } = this.props;
+    return (
+      <Router>
+        <Switch>
+        <Route
+          exact
+          path="/"
+          component={ HomePage}
+        ></Route>
+        <Route
+          path="/product/:productId"
+          component={ProductPage }
+        ></Route>
+        </Switch>
+      </Router>
+    );
+  }
 }
 
-export default App;
+export default withStyles(styles)(App);
